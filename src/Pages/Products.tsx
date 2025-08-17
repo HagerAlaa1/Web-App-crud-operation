@@ -55,7 +55,7 @@ function fetchProducts () {
     return response.json();
   })
   .then((data) => {
-    // console.debug(data);
+    console.debug(data);
 
     //remove items that were deleted locally
     const deletedIds = JSON.parse(localStorage.getItem("deletedIds") || "[]");
