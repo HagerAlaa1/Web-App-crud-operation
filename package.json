@@ -4,24 +4,23 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"vite\" \"json-server --watch src/db.json --port 4001\"",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "json-server": "json-server --watch db.json --port 3001"
+    "preview": "vite preview"
   },
   "dependencies": {
-    "json-server": "0.17.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.7.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
-    "@types/react": "^19.1.10",
+    "@types/react": "^19.1.11",
     "@types/react-dom": "^19.1.7",
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react-swc": "^3.10.2",
+    "concurrently": "^9.2.1",
     "eslint": "^9.30.1",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",

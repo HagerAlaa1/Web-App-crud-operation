@@ -47,7 +47,7 @@ function ProductList ({showForm}:ProductsShowForm ) {
 const [products, setproducts] = useState<ProductDetails[]>([])
 
 function fetchProducts () {
-    fetch("http://localhost:3001/products")  
+    fetch("http://localhost:4001/products")  
   .then((response) => {
     if (!response.ok) {
       throw new Error("UnExpected server response");
@@ -154,7 +154,7 @@ function ProductForm ({showList, product}:ProductsShowList ) {
         }
         if (product.id) {
             //update the product
-            fetch("http://localhost:3001/products/" + product.id, {
+            fetch("http://localhost:4001/products/" + product.id, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -177,7 +177,7 @@ function ProductForm ({showList, product}:ProductsShowList ) {
 
             // Add created date
             product.createdAt = new Date().toISOString().slice(0, 10);
-            fetch("http://localhost:3001/products", {
+            fetch("http://localhost:4001/products", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
