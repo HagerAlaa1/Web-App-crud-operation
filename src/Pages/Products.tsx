@@ -49,41 +49,100 @@ const [products, setproducts] = useState<ProductDetails[]>([])
 function fetchProducts () {
     console.log("🔄 REFRESH: Starting fetchProducts...");
 
-//     fetch("http://localhost:4001/products")  
-//   .then((response) => {
-//     if (!response.ok) {
-//       throw new Error("UnExpected server response");
-//     }
-//     return response.json();
-//   })
-//   .then((data) => {
-//     console.debug(data);
-fetch("https://fakestoreapi.in/api/products")
-.then((Response) => {
-    if(!Response.ok) {
-        throw new Error ("Unexpected server response");
-    } return Response.json() 
-})
-.then((data) => {
-    // setproducts(data.products);
+// fetch("https://fakestoreapi.in/api/products")
+// .then((Response) => {
+//     if(!Response.ok) {
+//         throw new Error ("Unexpected server response");
+//     } return Response.json() 
+// })
+// .then((data) => {
+//     // setproducts(data.products);
     
-    const deletedIds = JSON.parse(localStorage.getItem("deletedIds") || "[]");
-    const updatedProducts = JSON.parse(localStorage.getItem("updatedProducts") || "{}")
+//     const deletedIds = JSON.parse(localStorage.getItem("deletedIds") || "[]");
+//     const updatedProducts = JSON.parse(localStorage.getItem("updatedProducts") || "{}")
 
-    // remove items that were deleted locally
-    const filtered = data.products.filter((p : ProductDetails) => !deletedIds.includes(p.id));
-    //update products locally
-    const merged = filtered.map((p: ProductDetails) => ({...p, ...updatedProducts[p.id]}))
-    const newProducts = JSON.parse(localStorage.getItem("newProducts") || "[]");
-    // Add new products created locally  
-    const allProducts = [...merged, ...newProducts];
-    setproducts(allProducts)
-})
-  .catch((error) => {
-    console.error("Error:" , error);
-  });
+//     // remove items that were deleted locally
+//     const filtered = data.products.filter((p : ProductDetails) => !deletedIds.includes(p.id));
+//     //update products locally
+//     const merged = filtered.map((p: ProductDetails) => ({...p, ...updatedProducts[p.id]}))
+//     const newProducts = JSON.parse(localStorage.getItem("newProducts") || "[]");
+//     // Add new products created locally  
+//     const allProducts = [...merged, ...newProducts];
+//     setproducts(allProducts)
+// })
+//   .catch((error) => {
+//     console.error("Error:" , error);
+//   });
 
+// }
+    
+    try {
+        // Try alternative API first, fallback to original
+        const apiUrls = [
+            "https://fakestoreapi.com/products", // Alternative API
+            "https://fakestoreapi.in/api/products" // Original API
+        ];
+        
+        let currentApiIndex = 0;
+        
+        const tryFetch = () => {
+            const currentUrl = apiUrls[currentApiIndex];
+            console.log("REFRESH: Trying API:", currentUrl);
+            
+            fetch(currentUrl)
+            .then((Response) => {
+                if(!Response.ok) {
+                    throw new Error (`API ${currentUrl} returned ${Response.status}`);
+                } 
+                return Response.json() 
+            })
+            .then((data) => {
+                // Handle different API response formats
+                const products = data.products || data; // fakestoreapi.com returns array directly
+                
+                const deletedIds = JSON.parse(localStorage.getItem("deletedIds") || "[]");
+                const updatedProducts = JSON.parse(localStorage.getItem("updatedProducts") || "{}")
+                const newProducts = JSON.parse(localStorage.getItem("newProducts") || "[]");
+
+                // remove items that were deleted locally
+                const filtered = products.filter((p : ProductDetails) => !deletedIds.includes(p.id));
+                
+                //update products locally
+                const merged = filtered.map((p: ProductDetails) => ({
+                    ...p, 
+                    ...updatedProducts[p.id],
+                    price: Number(updatedProducts[p.id]?.price || p.price)
+                }))
+
+                // Add new products created locally
+                const allProducts = [...merged, ...newProducts];
+
+                setproducts(allProducts)
+            })
+            .catch((error) => {
+                console.error("REFRESH: Error with", currentUrl, ":", error);
+
+                currentApiIndex++;
+                
+                if (currentApiIndex < apiUrls.length) {
+                    tryFetch();
+                } else {
+                    console.error("REFRESH: All APIs failed, showing only local data");
+
+                    // Show only locally created products if all APIs fail
+                    const newProducts = JSON.parse(localStorage.getItem("newProducts") || "[]");
+                    setproducts(newProducts);
+                }
+            });
+        };
+        
+        tryFetch();
+        
+    } catch (error) {
+        console.error("REFRESH: LocalStorage error:", error);
+    }
 }
+
 
 useEffect(() => fetchProducts(), [])
 
