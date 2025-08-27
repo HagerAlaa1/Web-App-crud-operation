@@ -1,4 +1,5 @@
 import { StrictMode } from 'react'
+import './index.css'
 import { createRoot } from 'react-dom/client'
 import { Navbar, Footer  } from './Pages/Layout'
 import { Home } from './Pages/Home'

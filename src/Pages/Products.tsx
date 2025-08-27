@@ -129,7 +129,7 @@ function ProductList({ showForm }: ProductsShowForm): React.ReactElement {
       <h2 className="text-center mb-3">List of Products</h2>
       <button onClick={() => showForm()} className="btn btn-primary me-2">Create</button>
       <button onClick={() => loadProducts()} className="btn btn-outline-primary me-2">Refresh</button>
-      
+      <div className="table-responsive">
       <table className="table">
         <thead>
           <tr>
@@ -173,6 +173,7 @@ function ProductList({ showForm }: ProductsShowForm): React.ReactElement {
           }
         </tbody>
       </table>
+      </div>
     </>
   )
 }
