@@ -145,9 +145,9 @@ function ProductList({ showForm }: ProductsShowForm): React.ReactElement {
         </thead>
         <tbody>
           {
-            products.map((product) => (
+            products.map((product, index) => (
               <tr key={product.id}>
-                <td>{product.id}</td>
+                <td>{index + 1}</td>
                 <td>{product.name}</td>
                 <td>{product.brand}</td>
                 <td>{product.category}</td>
