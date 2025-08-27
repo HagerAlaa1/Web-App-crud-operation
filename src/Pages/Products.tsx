@@ -30,11 +30,11 @@ export const InitialProducts = [
       "id": 3
     },
     {
-      "name": "iPhone 15 Pro",
+      "name": "iPhone 13 Pro",
       "brand": "Apple",
       "category": "Phones",
-      "price": "998$",
-      "description": "newest edition",
+      "price": "746$",
+      "description": "iphone 13 pro",
       "createdAt": "2025-08-17",
       "id": 4
     }
