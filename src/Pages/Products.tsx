@@ -3,23 +3,42 @@ import React, { useEffect, useState, type JSX } from "react";
 // Initial data
 export const InitialProducts = [
   {
-    "id": 1,
-    "name": "Samsung Galaxy 15F",
-    "brand": "Samsung",
-    "category": "Phones",
-    "price": "482",
-    "description": "SmartPhone",
-    "createdAt": "2023-03-07"
-  },
-  {
-    "id": 2,
-    "name": "Nokia x300",
-    "brand": "Nokia",
-    "category": "Phones",
-    "price": "211",
-    "description": "Red Color",
-    "createdAt": "2023-03-07"
-  }
+      "name": "Samsung Galaxy 15F",
+      "brand": "Samsung",
+      "category": "Phones",
+      "price": "480",
+      "description": "SmartPhone",
+      "createdAt": "2023-03-07",
+      "id": 1
+    },
+    {
+      "name": "Nokia x300",
+      "brand": "Nokia",
+      "category": "Phones",
+      "price": "211",
+      "description": "Red Color",
+      "createdAt": "2023-03-07",
+      "id": 2
+    },
+    {
+      "name": "iPhone 15 Pro",
+      "brand": "Apple",
+      "category": "Phones",
+      "price": "998$",
+      "description": "newest edition",
+      "createdAt": "2025-08-16",
+      "id": 3
+    },
+    {
+      "name": "iPhone 15 Pro",
+      "brand": "Apple",
+      "category": "Phones",
+      "price": "998$",
+      "description": "newest edition",
+      "createdAt": "2025-08-17",
+      "id": 4
+    }
+
 ];
 
 type ProductsShowForm = {
