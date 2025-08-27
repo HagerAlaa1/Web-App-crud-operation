@@ -1,4 +1,5 @@
 import React, { useEffect, useState, type JSX } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Initial data
 export const InitialProducts = [
@@ -24,7 +25,7 @@ export const InitialProducts = [
       "name": "iPhone 15 Pro",
       "brand": "Apple",
       "category": "Phones",
-      "price": "998$",
+      "price": "998",
       "description": "newest edition",
       "createdAt": "2025-08-16",
       "id": 3
@@ -33,7 +34,7 @@ export const InitialProducts = [
       "name": "iPhone 13 Pro",
       "brand": "Apple",
       "category": "Phones",
-      "price": "746$",
+      "price": "746",
       "description": "iphone 13 pro",
       "createdAt": "2025-08-17",
       "id": 4
@@ -150,7 +151,7 @@ function ProductList({ showForm }: ProductsShowForm): React.ReactElement {
                 <td>{product.name}</td>
                 <td>{product.brand}</td>
                 <td>{product.category}</td>
-                <td>${product.price}</td>
+                <td>{product.price}$</td>
                 <td>{product.createdAt}</td>
                 <td style={{ width: "10px", whiteSpace: "nowrap" }}>
                   <button 
@@ -248,6 +249,10 @@ function ProductForm({ showList, product }: ProductsShowList) {
       );
     }
   }
+  const navigate = useNavigate()
+    window.onpopstate = () => {
+        navigate("/Products");
+}
 
   return (
     <>
@@ -322,8 +327,8 @@ function ProductForm({ showList, product }: ProductsShowList) {
                 className="form-control" 
                 name="price" 
                 type="number" 
-                // step="0.01"
-                // defaultValue={product!.price} 
+                step="0.01"
+                defaultValue={product!.price} 
                 required 
               />
             </div>
