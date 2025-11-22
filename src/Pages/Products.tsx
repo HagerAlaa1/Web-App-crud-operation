@@ -4,39 +4,39 @@ import { useNavigate } from "react-router-dom";
 // Initial data
 export const InitialProducts = [
   {
-      "name": "Samsung Galaxy 15F",
+      "name": "Galaxy S23 Ultra",
       "brand": "Samsung",
-      "category": "Phones",
-      "price": "480",
+      "category": "Smartphone",
+      "price": "1,199",
       "description": "SmartPhone",
-      "createdAt": "2023-03-07",
+      "createdAt": "2025-01-10",
       "id": 1
     },
     {
-      "name": "Nokia x300",
-      "brand": "Nokia",
-      "category": "Phones",
-      "price": "211",
-      "description": "Red Color",
-      "createdAt": "2023-03-07",
+      "name": "Pixel Watch 2",
+      "brand": "Google",
+      "category": "Smartwatch",
+      "price": "349",
+      "description": "Smartwatch",
+      "createdAt": "2025-01-03",
       "id": 2
     },
     {
-      "name": "iPhone 15 Pro",
-      "brand": "Apple",
-      "category": "Phones",
-      "price": "998",
-      "description": "newest edition",
-      "createdAt": "2025-08-16",
+      "name": "Sony WH-1000XM5",
+      "brand": "Sony",
+      "category": "Headphones",
+      "price": "399",
+      "description": "Headphones",
+      "createdAt": "2025-01-15",
       "id": 3
     },
     {
-      "name": "iPhone 13 Pro",
+      "name": "MacBook Air M3",
       "brand": "Apple",
-      "category": "Phones",
-      "price": "746",
-      "description": "iphone 13 pro",
-      "createdAt": "2025-08-17",
+      "category": "Laptop",
+      "price": "1,099",
+      "description": "Laptop",
+      "createdAt": "2025-01-09",
       "id": 4
     }
 
